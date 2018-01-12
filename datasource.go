@@ -343,11 +343,10 @@ func (c *Client) DataSource(id int64) (*DataSource, error) {
 	return result, err
 }
 
-// DataSourceByUID fetches and returns the Grafana data source whose UID is passed.
-func (c *Client) DataSourceByUID(uid string) (*DataSource, error) {
-	path := fmt.Sprintf("/api/datasources/uid/%s", uid)
-	result := &DataSource{}
-	err := c.request("GET", path, nil, nil, result)
+// GetAllDataSources returns all configured datasources.
+func (c *Client) GetAllDataSources() ([]*DataSource, error) {
+	result := []*DataSource{}
+	err := c.request("GET", "/api/datasources", nil, nil, &result)
 	if err != nil {
 		return nil, err
 	}
