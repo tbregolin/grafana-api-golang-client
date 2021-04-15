@@ -132,8 +132,8 @@ type JSONData struct {
 	MaxLines      int                `json:"maxLines,omitempty"`
 
 	// Used by OpenTSDB
-	TsdbVersion    int64 `json:"tsdbVersion,omitempty"`
-	TsdbResolution int64 `json:"tsdbResolution,omitempty"`
+	// TsdbVersion    string `json:"tsdbVersion,omitempty"`
+	// TsdbResolution string `json:"tsdbResolution,omitempty"`
 
 	// Used by MSSQL
 	Encrypt string `json:"encrypt,omitempty"`
