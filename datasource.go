@@ -149,8 +149,9 @@ type JSONData struct {
 	ConnMaxLifetime int64 `json:"connMaxLifetime,omitempty"`
 
 	// Used by Prometheus
-	HTTPMethod   string `json:"httpMethod,omitempty"`
-	QueryTimeout string `json:"queryTimeout,omitempty"`
+	HTTPMethod                  string                       `json:"httpMethod,omitempty"`
+	QueryTimeout                string                       `json:"queryTimeout,omitempty"`
+	ExemplarTraceIdDestinations []ExemplarTraceIdDestination `json:"exemplarTraceIdDestinations,omitempty"`
 
 	// Used by Stackdriver
 	AuthenticationType string `json:"authenticationType,omitempty"`
@@ -293,6 +294,11 @@ func (sjd SecureJSONData) MarshalJSON() ([]byte, error) {
 		fields[fmt.Sprintf("httpHeaderValue%d", index+1)] = value
 	}
 	return json.Marshal(fields)
+}
+
+type ExemplarTraceIdDestination struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 // NewDataSource creates a new Grafana data source.
